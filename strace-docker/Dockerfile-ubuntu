@@ -1,0 +1,8 @@
+FROM ubuntu
+RUN apt-get update && apt-get install -y 
+ 
+RUN mkdir /app
+WORKDIR /app
+COPY Dockerfile .
+
+CMD strace -f -s1024 -o strace.out ls -lR

@@ -1,0 +1,4 @@
+FROM alpine
+RUN apk update && apk add strace curl
+
+CMD strace -f -s1024 -o strace.out curl http://httpbin.org/headers < /dev/null; egrep 'socket|connect|sendto' strace.out
